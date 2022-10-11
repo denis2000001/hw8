@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% block comment %}
+    {% if user %}
+        <form action="/posts/{{ posts.id }}/detail/" method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" value="Создать коммент">
+        </form>
+    {% endif %}
+{% endblock %}
+{% block post %}
+    <style type="text/css">
+        .post_block {
+
+        }
+        .post_block h1 {
+            text-align: center;
+            color: #242b2e;
+        }
+        .post_block h5 {
+            text-align: center;
+            color: #242b2e;
+        }
+    </style>
+    <div class="post_block">
+        <div style="display: flex; justify-content: center; align-items: center">
+        </div>
+        <h1>{{ post.title }}</h1>
+        <h5>{{ post.description }}</h5>
+        <p>{{ post.date }}</p>
+        <p>{{ post.stars }}</p>
+        <p>{{ post.type }}</p>
+    </div>
+    <div class="comments">
+        {% for comment in comments %}
+            <div style="background-color: aqua; text-align: left; height: 15vh; width: 30vh" >
+                <h3 style="color: purple">Автор: {{ comment.author }}</h3>
+                <h5>{{ comment.text }}</h5>
+                <p style="color: blue">{{ comment.created_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

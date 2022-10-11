@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Post</title>
+</head>
+<body style="background-color: grey">
+    <form action="/posts/{{ id }}/detail/edit/" method="post">
+        {% csrf_token %}
+        {{ edited_post_form.as_p}}
+        <input type="submit" value="Сохранить пост">
+    </form>
+</body>
+</html>
